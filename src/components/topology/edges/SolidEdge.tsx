@@ -17,7 +17,7 @@ export function SolidEdge(props: EdgeProps) {
       id={id}
       path={edgePath}
       style={{
-        stroke: '#000000',
+        stroke: 'var(--foreground)',
         strokeWidth: 2,
       }}
     />

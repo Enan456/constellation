@@ -7,12 +7,14 @@ interface InfrastructureStore {
   isEditMode: boolean;
   isLoading: boolean;
   error: string | null;
+  selectedHostId: string | null;
 
   // Actions
   setData: (data: InfrastructureData) => void;
   toggleEditMode: () => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
+  setSelectedHostId: (id: string | null) => void;
 
   // Host operations
   addHost: (host: Omit<Host, 'id'>) => void;
@@ -45,11 +47,13 @@ export const useInfrastructureStore = create<InfrastructureStore>((set, get) => 
   isEditMode: false,
   isLoading: false,
   error: null,
+  selectedHostId: null,
 
   setData: (data) => set({ data }),
   toggleEditMode: () => set((state) => ({ isEditMode: !state.isEditMode })),
   setLoading: (loading) => set({ isLoading: loading }),
   setError: (error) => set({ error }),
+  setSelectedHostId: (id) => set({ selectedHostId: id }),
 
   addHost: (hostData) => {
     const { data } = get();

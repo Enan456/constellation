@@ -210,6 +210,7 @@
       "targetHostId": "mac-studio"
     }
   ],
+  "projects": [],
   "settings": {
     "showIPs": true,
     "showPorts": true,

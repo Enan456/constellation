@@ -13,7 +13,7 @@ export const locationSchema = z.object({
 export const serviceSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  port: z.number().int().min(1).max(65535),
+  port: z.number().int().min(0).max(65535),
   protocol: z.enum(['http', 'https']),
   description: z.string().optional(),
   apiEndpoint: z.boolean().optional(),
@@ -40,6 +40,14 @@ export const connectionSchema = z.object({
   label: z.string().optional(),
 });
 
+export const projectSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  description: z.string().optional(),
+  url: z.string().optional(),
+  hostIds: z.array(z.string()),
+});
+
 export const settingsSchema = z.object({
   showIPs: z.boolean(),
   showPorts: z.boolean(),
@@ -51,6 +59,7 @@ export const infrastructureSchema = z.object({
   locations: z.array(locationSchema),
   hosts: z.array(hostSchema),
   connections: z.array(connectionSchema),
+  projects: z.array(projectSchema),
   settings: settingsSchema,
 });
 

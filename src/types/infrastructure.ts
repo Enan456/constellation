@@ -17,6 +17,14 @@ export interface Service {
   apiEndpoint?: boolean;
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  description?: string;
+  url?: string;
+  hostIds: string[];
+}
+
 export interface Host {
   id: string;
   name: string;
@@ -49,5 +57,6 @@ export interface InfrastructureData {
   locations: GeographicLocation[];
   hosts: Host[];
   connections: Connection[];
+  projects: Project[];
   settings: AppSettings;
 }

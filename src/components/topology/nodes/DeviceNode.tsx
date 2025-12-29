@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, memo } from 'react';
+import { memo } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 import { Host } from '@/types/infrastructure';
-import { ServicePopover } from './ServicePopover';
+import { useInfrastructureStore } from '@/stores/infrastructureStore';
 
 interface DeviceNodeData {
   host: Host;
@@ -12,14 +12,13 @@ interface DeviceNodeData {
 
 function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
   const { host, isEditMode } = data;
-  const [showServices, setShowServices] = useState(false);
+  const { setSelectedHostId, selectedHostId } = useInfrastructureStore();
 
-  // Network A hosts should have popups open to the left
-  const isNetworkA = host.location.id === 'network-a';
+  const isSelected = selectedHostId === host.id;
 
   const handleClick = () => {
     if (!isEditMode) {
-      setShowServices(!showServices);
+      setSelectedHostId(isSelected ? null : host.id);
     }
   };
 
@@ -41,7 +40,7 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
         className={`
           bg-white dark:bg-black border-2 border-black dark:border-white px-4 py-3 min-w-[140px]
           ${isEditMode ? 'cursor-move' : 'cursor-pointer'}
-          ${selected ? 'border-4' : ''}
+          ${selected || isSelected ? 'border-4' : ''}
         `}
       >
         <h3 className="font-bold text-sm leading-tight text-black dark:text-white">{host.name}</h3>
@@ -61,14 +60,6 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
         position={Position.Right}
         className="!bg-transparent !w-0 !h-0 !border-0"
       />
-
-      {showServices && (
-        <ServicePopover
-          host={host}
-          onClose={() => setShowServices(false)}
-          openLeft={isNetworkA}
-        />
-      )}
     </div>
   );
 }
