@@ -258,34 +258,52 @@
   ],
   "connections": [
     {
-      "id": "conn-1",
+      "id": "conn-circle-1",
       "sourceHostId": "mean-green",
-      "targetHostId": "red-beast"
+      "targetHostId": "cloud-services",
+      "note": "dashed - cross network"
     },
     {
-      "id": "conn-2",
+      "id": "conn-circle-2",
+      "sourceHostId": "cloud-services",
+      "targetHostId": "mac-studio",
+      "note": "dashed - cross network"
+    },
+    {
+      "id": "conn-circle-3",
       "sourceHostId": "mac-studio",
-      "targetHostId": "macbook-air"
+      "targetHostId": "blue-cool",
+      "note": "solid - same Network B"
     },
     {
-      "id": "conn-3",
+      "id": "conn-circle-4",
       "sourceHostId": "blue-cool",
-      "targetHostId": "flywheel"
+      "targetHostId": "robot-raspi",
+      "note": "solid - same Network B"
     },
     {
-      "id": "conn-4",
+      "id": "conn-circle-5",
       "sourceHostId": "robot-raspi",
-      "targetHostId": "blue-cool"
+      "targetHostId": "red-beast",
+      "note": "dashed - cross network"
     },
     {
-      "id": "conn-5",
-      "sourceHostId": "mean-green",
-      "targetHostId": "mac-studio"
-    },
-    {
-      "id": "conn-6",
+      "id": "conn-circle-6",
       "sourceHostId": "red-beast",
-      "targetHostId": "cloud-services"
+      "targetHostId": "mean-green",
+      "note": "solid - same Network A"
+    },
+    {
+      "id": "conn-offshoot-1",
+      "sourceHostId": "mac-studio",
+      "targetHostId": "macbook-air",
+      "note": "offshoot"
+    },
+    {
+      "id": "conn-offshoot-2",
+      "sourceHostId": "blue-cool",
+      "targetHostId": "flywheel",
+      "note": "offshoot"
     }
   ],
   "projects": [],
