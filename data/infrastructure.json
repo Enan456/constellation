@@ -51,8 +51,8 @@
         "label": "Network A (Primary)"
       },
       "position": {
-        "x": 223,
-        "y": 123
+        "x": 150,
+        "y": 150
       },
       "services": [
         {
@@ -96,8 +96,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 577,
-        "y": 123
+        "x": 650,
+        "y": 150
       },
       "services": [
         {
@@ -110,6 +110,20 @@
       ]
     },
     {
+      "id": "macbook-air",
+      "name": "MacBook Air",
+      "ip": "0.0.0.0",
+      "location": {
+        "id": "network-b",
+        "label": "Network B (Secondary)"
+      },
+      "position": {
+        "x": 850,
+        "y": 150
+      },
+      "services": []
+    },
+    {
       "id": "red-beast",
       "name": "Red Beast",
       "ip": "100.83.129.118",
@@ -119,7 +133,7 @@
       },
       "position": {
         "x": 100,
-        "y": 300
+        "y": 350
       },
       "services": [
         {
@@ -149,20 +163,6 @@
       ]
     },
     {
-      "id": "macbook-air",
-      "name": "MacBook Air",
-      "ip": "0.0.0.0",
-      "location": {
-        "id": "network-b",
-        "label": "Network B (Secondary)"
-      },
-      "position": {
-        "x": 700,
-        "y": 300
-      },
-      "services": []
-    },
-    {
       "id": "robot-raspi",
       "name": "Robot Raspberry Pi",
       "ip": "100.75.35.86",
@@ -171,38 +171,10 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 223,
-        "y": 477
+        "x": 250,
+        "y": 500
       },
       "services": []
-    },
-    {
-      "id": "flywheel",
-      "name": "Flywheel",
-      "ip": "0.0.0.0",
-      "location": {
-        "id": "network-b",
-        "label": "Network B (Secondary)"
-      },
-      "position": {
-        "x": 577,
-        "y": 477
-      },
-      "services": [
-        {
-          "id": "aim-textlab-fw",
-          "name": "AIM Text Lab",
-          "port": 0,
-          "protocol": "http"
-        },
-        {
-          "id": "ghost-slack-fw",
-          "name": "Ghost Slack",
-          "port": 0,
-          "protocol": "http",
-          "description": "GitHub: endgame"
-        }
-      ]
     },
     {
       "id": "blue-cool",
@@ -213,8 +185,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 400,
-        "y": 550
+        "x": 550,
+        "y": 500
       },
       "services": [
         {
@@ -254,6 +226,34 @@
           "protocol": "http"
         }
       ]
+    },
+    {
+      "id": "flywheel",
+      "name": "Flywheel",
+      "ip": "0.0.0.0",
+      "location": {
+        "id": "network-b",
+        "label": "Network B (Secondary)"
+      },
+      "position": {
+        "x": 750,
+        "y": 500
+      },
+      "services": [
+        {
+          "id": "aim-textlab-fw",
+          "name": "AIM Text Lab",
+          "port": 0,
+          "protocol": "http"
+        },
+        {
+          "id": "ghost-slack-fw",
+          "name": "Ghost Slack",
+          "port": 0,
+          "protocol": "http",
+          "description": "GitHub: endgame"
+        }
+      ]
     }
   ],
   "connections": [
@@ -274,8 +274,8 @@
     },
     {
       "id": "conn-4",
-      "sourceHostId": "blue-cool",
-      "targetHostId": "robot-raspi"
+      "sourceHostId": "robot-raspi",
+      "targetHostId": "blue-cool"
     },
     {
       "id": "conn-5",
