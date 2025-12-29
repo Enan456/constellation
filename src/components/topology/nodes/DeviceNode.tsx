@@ -37,16 +37,21 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
 
   return (
     <div className="relative">
-      <Handle
-        type="target"
-        position={Position.Top}
-        className="!bg-transparent !w-0 !h-0 !border-0"
-      />
-      <Handle
-        type="target"
-        position={Position.Left}
-        className="!bg-transparent !w-0 !h-0 !border-0"
-      />
+      {/* Top handles */}
+      <Handle type="target" position={Position.Top} id="top-target" className="!bg-transparent !w-0 !h-0 !border-0" />
+      <Handle type="source" position={Position.Top} id="top-source" className="!bg-transparent !w-0 !h-0 !border-0" />
+
+      {/* Bottom handles */}
+      <Handle type="target" position={Position.Bottom} id="bottom-target" className="!bg-transparent !w-0 !h-0 !border-0" />
+      <Handle type="source" position={Position.Bottom} id="bottom-source" className="!bg-transparent !w-0 !h-0 !border-0" />
+
+      {/* Left handles */}
+      <Handle type="target" position={Position.Left} id="left-target" className="!bg-transparent !w-0 !h-0 !border-0" />
+      <Handle type="source" position={Position.Left} id="left-source" className="!bg-transparent !w-0 !h-0 !border-0" />
+
+      {/* Right handles */}
+      <Handle type="target" position={Position.Right} id="right-target" className="!bg-transparent !w-0 !h-0 !border-0" />
+      <Handle type="source" position={Position.Right} id="right-source" className="!bg-transparent !w-0 !h-0 !border-0" />
 
       <div
         onClick={handleClick}
@@ -64,17 +69,6 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
           {projectCount > 0 && ` · ${projectCount} project${projectCount !== 1 ? 's' : ''}`}
         </p>
       </div>
-
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        className="!bg-transparent !w-0 !h-0 !border-0"
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!bg-transparent !w-0 !h-0 !border-0"
-      />
     </div>
   );
 }

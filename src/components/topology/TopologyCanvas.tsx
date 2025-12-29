@@ -13,6 +13,7 @@ import ReactFlow, {
   applyNodeChanges,
   ReactFlowProvider,
   useReactFlow,
+  Position,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -44,6 +45,48 @@ function getEdgeType(
   return sourceHost.location.id === targetHost.location.id ? 'solid' : 'dashed';
 }
 
+function getEdgePositions(
+  sourceHost: Host,
+  targetHost: Host
+): { sourcePosition: Position; targetPosition: Position } {
+  const dx = targetHost.position.x - sourceHost.position.x;
+  const dy = targetHost.position.y - sourceHost.position.y;
+  const absDx = Math.abs(dx);
+  const absDy = Math.abs(dy);
+
+  // Determine if connection is more horizontal or vertical
+  if (absDx > absDy * 1.5) {
+    // Primarily horizontal
+    if (dx > 0) {
+      return { sourcePosition: Position.Right, targetPosition: Position.Left };
+    } else {
+      return { sourcePosition: Position.Left, targetPosition: Position.Right };
+    }
+  } else if (absDy > absDx * 1.5) {
+    // Primarily vertical
+    if (dy > 0) {
+      return { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+    } else {
+      return { sourcePosition: Position.Top, targetPosition: Position.Bottom };
+    }
+  } else {
+    // Diagonal - use the dominant direction
+    if (dx > 0 && dy > 0) {
+      // Target is bottom-right
+      return { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+    } else if (dx > 0 && dy < 0) {
+      // Target is top-right
+      return { sourcePosition: Position.Top, targetPosition: Position.Bottom };
+    } else if (dx < 0 && dy > 0) {
+      // Target is bottom-left
+      return { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+    } else {
+      // Target is top-left
+      return { sourcePosition: Position.Top, targetPosition: Position.Bottom };
+    }
+  }
+}
+
 function TopologyCanvasInner() {
   const { data, isEditMode, updateHostPosition, saveData, selectedHostId } = useInfrastructureStore();
   const { fitView } = useReactFlow();
@@ -65,13 +108,24 @@ function TopologyCanvasInner() {
   const initialEdges: Edge[] = useMemo(() => {
     if (!data) return [];
 
-    return data.connections.map((connection) => ({
-      id: connection.id,
-      source: connection.sourceHostId,
-      target: connection.targetHostId,
-      type: getEdgeType(connection, data.hosts),
-      label: connection.label,
-    }));
+    return data.connections.map((connection) => {
+      const sourceHost = data.hosts.find((h) => h.id === connection.sourceHostId);
+      const targetHost = data.hosts.find((h) => h.id === connection.targetHostId);
+
+      const positions = sourceHost && targetHost
+        ? getEdgePositions(sourceHost, targetHost)
+        : { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+
+      return {
+        id: connection.id,
+        source: connection.sourceHostId,
+        target: connection.targetHostId,
+        type: getEdgeType(connection, data.hosts),
+        label: connection.label,
+        sourcePosition: positions.sourcePosition,
+        targetPosition: positions.targetPosition,
+      };
+    });
   }, [data]);
 
   const [nodes, setNodes] = useNodesState(initialNodes);
