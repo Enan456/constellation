@@ -14,6 +14,9 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
   const { host, isEditMode } = data;
   const [showServices, setShowServices] = useState(false);
 
+  // Network A hosts should have popups open to the left
+  const isNetworkA = host.location.id === 'network-a';
+
   const handleClick = () => {
     if (!isEditMode) {
       setShowServices(!showServices);
@@ -25,21 +28,20 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
       <Handle
         type="target"
         position={Position.Top}
-        className="!bg-black dark:!bg-white !w-2 !h-2 !border-0"
+        className="!bg-transparent !w-0 !h-0 !border-0"
       />
       <Handle
         type="target"
         position={Position.Left}
-        className="!bg-black dark:!bg-white !w-2 !h-2 !border-0"
+        className="!bg-transparent !w-0 !h-0 !border-0"
       />
 
       <div
         onClick={handleClick}
         className={`
           bg-white dark:bg-black border-2 border-black dark:border-white px-4 py-3 min-w-[140px]
-          ${selected ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]' : ''}
-          ${isEditMode ? 'cursor-move' : 'cursor-pointer hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]'}
-          transition-shadow
+          ${isEditMode ? 'cursor-move' : 'cursor-pointer'}
+          ${selected ? 'border-4' : ''}
         `}
       >
         <h3 className="font-bold text-sm leading-tight text-black dark:text-white">{host.name}</h3>
@@ -52,16 +54,20 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
       <Handle
         type="source"
         position={Position.Bottom}
-        className="!bg-black dark:!bg-white !w-2 !h-2 !border-0"
+        className="!bg-transparent !w-0 !h-0 !border-0"
       />
       <Handle
         type="source"
         position={Position.Right}
-        className="!bg-black dark:!bg-white !w-2 !h-2 !border-0"
+        className="!bg-transparent !w-0 !h-0 !border-0"
       />
 
       {showServices && (
-        <ServicePopover host={host} onClose={() => setShowServices(false)} />
+        <ServicePopover
+          host={host}
+          onClose={() => setShowServices(false)}
+          openLeft={isNetworkA}
+        />
       )}
     </div>
   );

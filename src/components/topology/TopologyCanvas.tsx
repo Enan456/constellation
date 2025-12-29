@@ -44,6 +44,7 @@ function getEdgeType(
 
 export function TopologyCanvas() {
   const { data, isEditMode, updateHostPosition, saveData } = useInfrastructureStore();
+  const isDark = data?.settings.darkMode ?? false;
 
   const initialNodes: Node[] = useMemo(() => {
     if (!data) return [];
@@ -125,7 +126,7 @@ export function TopologyCanvas() {
         proOptions={{ hideAttribution: true }}
       >
         <Controls showInteractive={false} />
-        <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#e5e5e5" />
+        {!isDark && <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#e5e5e5" />}
       </ReactFlow>
     </div>
   );
