@@ -2,25 +2,50 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #000000;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* React Flow customizations */
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__edge-path {
+  stroke: #000000;
+  stroke-width: 2;
+}
+
+.react-flow__controls {
+  border: 2px solid #000000;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.react-flow__controls-button {
+  border: none;
+  border-bottom: 1px solid #000000;
+  background: #ffffff;
+}
+
+.react-flow__controls-button:hover {
+  background: #f0f0f0;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.react-flow__minimap {
+  border: 2px solid #000000;
+  border-radius: 0;
+}
+
+.react-flow__background pattern line {
+  stroke: #e5e5e5;
 }

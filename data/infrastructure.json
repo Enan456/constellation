@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "locations": [
+    { "id": "network-a", "label": "Network A (Primary)" },
+    { "id": "network-b", "label": "Network B (Secondary)" }
+  ],
+  "hosts": [
+    {
+      "id": "mean-green",
+      "name": "Mean Green",
+      "ip": "100.69.94.7",
+      "location": { "id": "network-a", "label": "Network A (Primary)" },
+      "position": { "x": 100, "y": 150 },
+      "services": [
+        { "id": "casaos-mg", "name": "CasaOS", "port": 80, "protocol": "http" },
+        { "id": "postgresml-mg", "name": "PostgresML", "port": 5432, "protocol": "http" }
+      ]
+    },
+    {
+      "id": "red-beast",
+      "name": "Red Beast",
+      "ip": "100.83.129.118",
+      "location": { "id": "network-a", "label": "Network A (Primary)" },
+      "position": { "x": 100, "y": 350 },
+      "services": [
+        { "id": "casaos-rb", "name": "CasaOS", "port": 80, "protocol": "http" },
+        { "id": "n8n-rb", "name": "n8n", "port": 5678, "protocol": "http" }
+      ]
+    },
+    {
+      "id": "blue-cool",
+      "name": "Blue Cool",
+      "ip": "100.74.211.17",
+      "location": { "id": "network-b", "label": "Network B (Secondary)" },
+      "position": { "x": 450, "y": 100 },
+      "services": [
+        { "id": "casaos-bc", "name": "CasaOS", "port": 80, "protocol": "http" },
+        { "id": "crafty-bc", "name": "Crafty", "port": 2285, "protocol": "http" },
+        { "id": "flywheel-bc", "name": "Flywheel", "port": 8080, "protocol": "http" },
+        { "id": "homeassistant-bc", "name": "Home Assistant", "port": 8123, "protocol": "http" }
+      ]
+    },
+    {
+      "id": "mac-studio",
+      "name": "Mac Studio",
+      "ip": "100.116.224.88",
+      "location": { "id": "network-b", "label": "Network B (Secondary)" },
+      "position": { "x": 450, "y": 300 },
+      "services": [
+        { "id": "ollama-ms", "name": "Ollama", "port": 11434, "protocol": "http" }
+      ]
+    },
+    {
+      "id": "robot-raspi",
+      "name": "Robot Raspberry Pi",
+      "ip": "100.75.35.86",
+      "location": { "id": "network-b", "label": "Network B (Secondary)" },
+      "position": { "x": 450, "y": 500 },
+      "services": []
+    }
+  ],
+  "connections": [
+    { "id": "conn-1", "sourceHostId": "mean-green", "targetHostId": "red-beast" },
+    { "id": "conn-2", "sourceHostId": "blue-cool", "targetHostId": "mac-studio" },
+    { "id": "conn-3", "sourceHostId": "mac-studio", "targetHostId": "robot-raspi" },
+    { "id": "conn-4", "sourceHostId": "mean-green", "targetHostId": "blue-cool" },
+    { "id": "conn-5", "sourceHostId": "red-beast", "targetHostId": "mac-studio" }
+  ],
+  "settings": {
+    "showIPs": true,
+    "showPorts": true
+  }
+}
