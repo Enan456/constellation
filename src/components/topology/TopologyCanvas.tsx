@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useEffect } from 'react';
+import { useCallback, useMemo, useEffect, useRef } from 'react';
 import ReactFlow, {
   Node,
   Edge,
@@ -11,6 +11,8 @@ import ReactFlow, {
   useEdgesState,
   NodeChange,
   applyNodeChanges,
+  ReactFlowProvider,
+  useReactFlow,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -42,8 +44,10 @@ function getEdgeType(
   return sourceHost.location.id === targetHost.location.id ? 'solid' : 'dashed';
 }
 
-export function TopologyCanvas() {
-  const { data, isEditMode, updateHostPosition, saveData } = useInfrastructureStore();
+function TopologyCanvasInner() {
+  const { data, isEditMode, updateHostPosition, saveData, selectedHostId } = useInfrastructureStore();
+  const { fitView } = useReactFlow();
+  const prevSelectedHostId = useRef<string | null>(null);
   const isDark = data?.settings.darkMode ?? false;
 
   const initialNodes: Node[] = useMemo(() => {
@@ -81,6 +85,21 @@ export function TopologyCanvas() {
   useEffect(() => {
     setEdges(initialEdges);
   }, [initialEdges, setEdges]);
+
+  // Recenter graph when sidebar opens/closes
+  useEffect(() => {
+    const sidebarOpened = prevSelectedHostId.current === null && selectedHostId !== null;
+    const sidebarClosed = prevSelectedHostId.current !== null && selectedHostId === null;
+
+    if (sidebarOpened || sidebarClosed) {
+      // Small delay to allow DOM to update
+      setTimeout(() => {
+        fitView({ padding: 0.2, duration: 200 });
+      }, 50);
+    }
+
+    prevSelectedHostId.current = selectedHostId;
+  }, [selectedHostId, fitView]);
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
@@ -129,5 +148,13 @@ export function TopologyCanvas() {
         {!isDark && <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#e5e5e5" />}
       </ReactFlow>
     </div>
+  );
+}
+
+export function TopologyCanvas() {
+  return (
+    <ReactFlowProvider>
+      <TopologyCanvasInner />
+    </ReactFlowProvider>
   );
 }

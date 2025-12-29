@@ -12,13 +12,26 @@ interface DeviceNodeData {
 
 function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
   const { host, isEditMode } = data;
-  const { setSelectedHostId, selectedHostId } = useInfrastructureStore();
+  const { setSelectedHostId, selectedHostId, data: infrastructureData } = useInfrastructureStore();
 
   const isSelected = selectedHostId === host.id;
+
+  // Count projects for this host
+  const projectCount = infrastructureData?.projects.filter(p => p.hostIds.includes(host.id)).length || 0;
 
   const handleClick = () => {
     if (!isEditMode) {
       setSelectedHostId(isSelected ? null : host.id);
+    }
+  };
+
+  const handleDoubleClick = () => {
+    if (isEditMode) return;
+
+    // Check if host has a port 80 service (CasaOS)
+    const port80Service = host.services.find(s => s.port === 80);
+    if (port80Service) {
+      window.open(`http://${host.ip}`, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -37,6 +50,7 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
 
       <div
         onClick={handleClick}
+        onDoubleClick={handleDoubleClick}
         className={`
           bg-white dark:bg-black border-2 border-black dark:border-white px-4 py-3 min-w-[140px]
           ${isEditMode ? 'cursor-move' : 'cursor-pointer'}
@@ -47,6 +61,7 @@ function DeviceNodeComponent({ data, selected }: NodeProps<DeviceNodeData>) {
         <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{host.ip}</p>
         <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
           {host.services.length} service{host.services.length !== 1 ? 's' : ''}
+          {projectCount > 0 && ` · ${projectCount} project${projectCount !== 1 ? 's' : ''}`}
         </p>
       </div>
 
