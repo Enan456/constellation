@@ -280,10 +280,28 @@ export default function Home() {
                 )}
               </div>
 
-              {/* Projects Section */}
+              {/* Projects / Service Health Section */}
               <div className="p-4">
-                <h3 className="font-bold text-sm mb-3">Projects</h3>
-                {hostProjects.length === 0 ? (
+                <h3 className="font-bold text-sm mb-3">
+                  {selectedHost.id === 'flywheel' ? 'Service Health' : 'Projects'}
+                </h3>
+                {selectedHost.id === 'flywheel' ? (
+                  <div className="space-y-2">
+                    {selectedHost.services.map((service) => (
+                      <div key={service.id} className="p-2 border border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium text-sm">{service.name}</span>
+                          <span className="text-xs px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                            Active
+                          </span>
+                        </div>
+                        {service.description && (
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{service.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : hostProjects.length === 0 ? (
                   <p className="text-sm text-gray-400">No projects</p>
                 ) : (
                   <ul className="space-y-2">

@@ -8,6 +8,10 @@
     {
       "id": "network-b",
       "label": "Network B (Secondary)"
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud Services"
     }
   ],
   "hosts": [
@@ -21,7 +25,7 @@
       },
       "position": {
         "x": 100,
-        "y": 150
+        "y": 250
       },
       "services": [
         {
@@ -65,8 +69,8 @@
         "label": "Network A (Primary)"
       },
       "position": {
-        "x": 100,
-        "y": 350
+        "x": 250,
+        "y": 450
       },
       "services": [
         {
@@ -105,7 +109,7 @@
       },
       "position": {
         "x": 550,
-        "y": 150
+        "y": 450
       },
       "services": [
         {
@@ -147,6 +151,34 @@
       ]
     },
     {
+      "id": "flywheel",
+      "name": "Flywheel",
+      "ip": "0.0.0.0",
+      "location": {
+        "id": "network-b",
+        "label": "Network B (Secondary)"
+      },
+      "position": {
+        "x": 750,
+        "y": 450
+      },
+      "services": [
+        {
+          "id": "aim-textlab-fw",
+          "name": "AIM Text Lab",
+          "port": 0,
+          "protocol": "http"
+        },
+        {
+          "id": "ghost-slack-fw",
+          "name": "Ghost Slack",
+          "port": 0,
+          "protocol": "http",
+          "description": "GitHub: endgame"
+        }
+      ]
+    },
+    {
       "id": "mac-studio",
       "name": "Mac Studio",
       "ip": "100.116.224.88",
@@ -155,8 +187,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 550,
-        "y": 350
+        "x": 700,
+        "y": 250
       },
       "services": [
         {
@@ -169,6 +201,20 @@
       ]
     },
     {
+      "id": "macbook-air",
+      "name": "MacBook Air",
+      "ip": "0.0.0.0",
+      "location": {
+        "id": "network-b",
+        "label": "Network B (Secondary)"
+      },
+      "position": {
+        "x": 900,
+        "y": 250
+      },
+      "services": []
+    },
+    {
       "id": "robot-raspi",
       "name": "Robot Raspberry Pi",
       "ip": "100.75.35.86",
@@ -177,10 +223,37 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 550,
-        "y": 500
+        "x": 400,
+        "y": 550
       },
       "services": []
+    },
+    {
+      "id": "cloud-services",
+      "name": "Cloud",
+      "ip": "0.0.0.0",
+      "location": {
+        "id": "cloud",
+        "label": "Cloud Services"
+      },
+      "position": {
+        "x": 400,
+        "y": 50
+      },
+      "services": [
+        {
+          "id": "n8n-cloud",
+          "name": "n8n Cloud",
+          "port": 0,
+          "protocol": "https"
+        },
+        {
+          "id": "slack-cloud",
+          "name": "Slack",
+          "port": 0,
+          "protocol": "https"
+        }
+      ]
     }
   ],
   "connections": [
@@ -208,6 +281,31 @@
       "id": "conn-5",
       "sourceHostId": "red-beast",
       "targetHostId": "mac-studio"
+    },
+    {
+      "id": "conn-6",
+      "sourceHostId": "blue-cool",
+      "targetHostId": "flywheel"
+    },
+    {
+      "id": "conn-7",
+      "sourceHostId": "mac-studio",
+      "targetHostId": "macbook-air"
+    },
+    {
+      "id": "conn-8",
+      "sourceHostId": "red-beast",
+      "targetHostId": "cloud-services"
+    },
+    {
+      "id": "conn-9",
+      "sourceHostId": "mean-green",
+      "targetHostId": "cloud-services"
+    },
+    {
+      "id": "conn-10",
+      "sourceHostId": "blue-cool",
+      "targetHostId": "robot-raspi"
     }
   ],
   "projects": [],
