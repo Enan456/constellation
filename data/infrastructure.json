@@ -25,7 +25,7 @@
       },
       "position": {
         "x": 400,
-        "y": 50
+        "y": 125
       },
       "services": [
         {
@@ -51,8 +51,8 @@
         "label": "Network A (Primary)"
       },
       "position": {
-        "x": 150,
-        "y": 150
+        "x": 575,
+        "y": 225
       },
       "services": [
         {
@@ -96,8 +96,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 650,
-        "y": 150
+        "x": 225,
+        "y": 225
       },
       "services": [
         {
@@ -118,8 +118,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 850,
-        "y": 150
+        "x": 50,
+        "y": 225
       },
       "services": []
     },
@@ -132,8 +132,8 @@
         "label": "Network A (Primary)"
       },
       "position": {
-        "x": 100,
-        "y": 350
+        "x": 575,
+        "y": 425
       },
       "services": [
         {
@@ -171,8 +171,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 250,
-        "y": 500
+        "x": 400,
+        "y": 525
       },
       "services": []
     },
@@ -185,8 +185,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 550,
-        "y": 500
+        "x": 225,
+        "y": 425
       },
       "services": [
         {
@@ -236,8 +236,8 @@
         "label": "Network B (Secondary)"
       },
       "position": {
-        "x": 750,
-        "y": 500
+        "x": 50,
+        "y": 425
       },
       "services": [
         {
