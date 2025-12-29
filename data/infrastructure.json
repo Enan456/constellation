@@ -53,12 +53,6 @@
           "name": "MinIO",
           "port": 9000,
           "protocol": "http"
-        },
-        {
-          "id": "flywheel-mg",
-          "name": "Flywheel CI/CD",
-          "port": 0,
-          "protocol": "http"
         }
       ]
     },
@@ -219,6 +213,6 @@
   "settings": {
     "showIPs": true,
     "showPorts": true,
-    "darkMode": true
+    "darkMode": false
   }
 }
