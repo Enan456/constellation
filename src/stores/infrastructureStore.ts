@@ -32,6 +32,9 @@ interface InfrastructureStore {
   // Location operations
   addLocation: (location: Omit<GeographicLocation, 'id'>) => void;
 
+  // Settings operations
+  toggleDarkMode: () => void;
+
   // Persistence
   saveData: () => Promise<void>;
   loadData: () => Promise<void>;
@@ -223,6 +226,33 @@ export const useInfrastructureStore = create<InfrastructureStore>((set, get) => 
         locations: [...data.locations, newLocation],
       },
     });
+  },
+
+  toggleDarkMode: () => {
+    const { data, saveData } = get();
+    if (!data) return;
+
+    const newDarkMode = !data.settings.darkMode;
+
+    set({
+      data: {
+        ...data,
+        settings: {
+          ...data.settings,
+          darkMode: newDarkMode,
+        },
+      },
+    });
+
+    // Apply to document
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Auto-save
+    saveData();
   },
 
   saveData: async () => {

@@ -13,7 +13,10 @@
       "position": { "x": 100, "y": 150 },
       "services": [
         { "id": "casaos-mg", "name": "CasaOS", "port": 80, "protocol": "http" },
-        { "id": "postgresml-mg", "name": "PostgresML", "port": 5432, "protocol": "http" }
+        { "id": "jan-mg", "name": "Jan AI", "port": 3001, "protocol": "http" },
+        { "id": "postgres-mg", "name": "PostgreSQL", "port": 5432, "protocol": "http" },
+        { "id": "jupyter-mg", "name": "Jupyter", "port": 8888, "protocol": "http" },
+        { "id": "minio-mg", "name": "MinIO", "port": 9000, "protocol": "http" }
       ]
     },
     {
@@ -24,7 +27,9 @@
       "position": { "x": 100, "y": 350 },
       "services": [
         { "id": "casaos-rb", "name": "CasaOS", "port": 80, "protocol": "http" },
-        { "id": "n8n-rb", "name": "n8n", "port": 5678, "protocol": "http" }
+        { "id": "n8n-rb", "name": "n8n", "port": 5678, "protocol": "http" },
+        { "id": "cockroachdb-rb", "name": "CockroachDB", "port": 8080, "protocol": "http" },
+        { "id": "homeassistant-rb", "name": "Home Assistant", "port": 8123, "protocol": "http" }
       ]
     },
     {
@@ -32,12 +37,14 @@
       "name": "Blue Cool",
       "ip": "100.74.211.17",
       "location": { "id": "network-b", "label": "Network B (Secondary)" },
-      "position": { "x": 450, "y": 100 },
+      "position": { "x": 550, "y": 150 },
       "services": [
         { "id": "casaos-bc", "name": "CasaOS", "port": 80, "protocol": "http" },
-        { "id": "crafty-bc", "name": "Crafty", "port": 2285, "protocol": "http" },
-        { "id": "flywheel-bc", "name": "Flywheel", "port": 8080, "protocol": "http" },
-        { "id": "homeassistant-bc", "name": "Home Assistant", "port": 8123, "protocol": "http" }
+        { "id": "crafty-bc", "name": "Crafty", "port": 2285, "protocol": "https" },
+        { "id": "postgres-bc", "name": "PostgreSQL", "port": 5432, "protocol": "http" },
+        { "id": "chromadb-bc", "name": "ChromaDB", "port": 8000, "protocol": "http" },
+        { "id": "homeassistant-bc", "name": "Home Assistant", "port": 8123, "protocol": "http" },
+        { "id": "prometheus-bc", "name": "Prometheus", "port": 9090, "protocol": "http" }
       ]
     },
     {
@@ -45,9 +52,9 @@
       "name": "Mac Studio",
       "ip": "100.116.224.88",
       "location": { "id": "network-b", "label": "Network B (Secondary)" },
-      "position": { "x": 450, "y": 300 },
+      "position": { "x": 550, "y": 350 },
       "services": [
-        { "id": "ollama-ms", "name": "Ollama", "port": 11434, "protocol": "http" }
+        { "id": "ollama-ms", "name": "Ollama", "port": 11434, "protocol": "http", "apiEndpoint": true }
       ]
     },
     {
@@ -55,7 +62,7 @@
       "name": "Robot Raspberry Pi",
       "ip": "100.75.35.86",
       "location": { "id": "network-b", "label": "Network B (Secondary)" },
-      "position": { "x": 450, "y": 500 },
+      "position": { "x": 550, "y": 500 },
       "services": []
     }
   ],
@@ -68,6 +75,7 @@
   ],
   "settings": {
     "showIPs": true,
-    "showPorts": true
+    "showPorts": true,
+    "darkMode": false
   }
 }

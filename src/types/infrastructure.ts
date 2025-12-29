@@ -14,6 +14,7 @@ export interface Service {
   port: number;
   protocol: 'http' | 'https';
   description?: string;
+  apiEndpoint?: boolean;
 }
 
 export interface Host {
@@ -40,6 +41,7 @@ export interface Connection {
 export interface AppSettings {
   showIPs: boolean;
   showPorts: boolean;
+  darkMode: boolean;
 }
 
 export interface InfrastructureData {

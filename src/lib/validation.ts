@@ -16,6 +16,7 @@ export const serviceSchema = z.object({
   port: z.number().int().min(1).max(65535),
   protocol: z.enum(['http', 'https']),
   description: z.string().optional(),
+  apiEndpoint: z.boolean().optional(),
 });
 
 export const hostSchema = z.object({
@@ -42,6 +43,7 @@ export const connectionSchema = z.object({
 export const settingsSchema = z.object({
   showIPs: z.boolean(),
   showPorts: z.boolean(),
+  darkMode: z.boolean(),
 });
 
 export const infrastructureSchema = z.object({
