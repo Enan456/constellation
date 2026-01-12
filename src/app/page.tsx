@@ -113,7 +113,7 @@ export default function Home() {
     <div className="h-screen w-screen flex flex-col bg-white dark:bg-black text-black dark:text-white">
       {/* Header */}
       <header className="border-b-2 border-black dark:border-white px-4 py-3 flex justify-between items-center bg-white dark:bg-black">
-        <h1 className="text-xl font-bold">Homelab</h1>
+        <h1 className="text-xl font-bold">Constellation</h1>
 
         <div className="flex items-center gap-3">
           {/* Dark Mode Toggle */}

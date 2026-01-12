@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Homelab Dashboard',
-  description: 'Infrastructure topology and service management',
+  title: 'Constellation',
+  description: 'Visual infrastructure topology dashboard for homelab and cloud environments',
 };
 
 export default function RootLayout({

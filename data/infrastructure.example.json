@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "locations": [
+    {
+      "id": "network-a",
+      "label": "Network A (Primary)"
+    },
+    {
+      "id": "network-b",
+      "label": "Network B (Secondary)"
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud Services"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "cloud-services",
+      "name": "Cloud",
+      "ip": "0.0.0.0",
+      "location": {
+        "id": "cloud",
+        "label": "Cloud Services"
+      },
+      "position": {
+        "x": 400,
+        "y": 100
+      },
+      "services": [
+        {
+          "id": "example-cloud-service",
+          "name": "Cloud Service",
+          "port": 0,
+          "protocol": "https"
+        }
+      ]
+    },
+    {
+      "id": "server-1",
+      "name": "Server 1",
+      "ip": "192.168.1.10",
+      "location": {
+        "id": "network-a",
+        "label": "Network A (Primary)"
+      },
+      "position": {
+        "x": 600,
+        "y": 250
+      },
+      "services": [
+        {
+          "id": "service-1",
+          "name": "Web Server",
+          "port": 80,
+          "protocol": "http"
+        },
+        {
+          "id": "service-2",
+          "name": "Database",
+          "port": 5432,
+          "protocol": "http"
+        }
+      ]
+    },
+    {
+      "id": "server-2",
+      "name": "Server 2",
+      "ip": "192.168.1.20",
+      "location": {
+        "id": "network-b",
+        "label": "Network B (Secondary)"
+      },
+      "position": {
+        "x": 200,
+        "y": 250
+      },
+      "services": [
+        {
+          "id": "service-3",
+          "name": "API Server",
+          "port": 3000,
+          "protocol": "http"
+        }
+      ]
+    },
+    {
+      "id": "workstation",
+      "name": "Workstation",
+      "ip": "192.168.1.100",
+      "location": {
+        "id": "network-b",
+        "label": "Network B (Secondary)"
+      },
+      "position": {
+        "x": 0,
+        "y": 250
+      },
+      "services": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1",
+      "sourceHostId": "cloud-services",
+      "targetHostId": "server-1"
+    },
+    {
+      "id": "conn-2",
+      "sourceHostId": "cloud-services",
+      "targetHostId": "server-2"
+    },
+    {
+      "id": "conn-3",
+      "sourceHostId": "server-2",
+      "targetHostId": "workstation"
+    }
+  ],
+  "projects": [],
+  "settings": {
+    "showIPs": true,
+    "showPorts": true,
+    "darkMode": true
+  }
+}

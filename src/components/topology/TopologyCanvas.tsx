@@ -48,7 +48,7 @@ function getEdgeType(
 function getEdgePositions(
   sourceHost: Host,
   targetHost: Host
-): { sourcePosition: Position; targetPosition: Position } {
+): { sourcePosition: Position; targetPosition: Position; sourceHandle: string; targetHandle: string } {
   const dx = targetHost.position.x - sourceHost.position.x;
   const dy = targetHost.position.y - sourceHost.position.y;
   const absDx = Math.abs(dx);
@@ -58,31 +58,31 @@ function getEdgePositions(
   if (absDx > absDy * 1.5) {
     // Primarily horizontal
     if (dx > 0) {
-      return { sourcePosition: Position.Right, targetPosition: Position.Left };
+      return { sourcePosition: Position.Right, targetPosition: Position.Left, sourceHandle: 'right-source', targetHandle: 'left-target' };
     } else {
-      return { sourcePosition: Position.Left, targetPosition: Position.Right };
+      return { sourcePosition: Position.Left, targetPosition: Position.Right, sourceHandle: 'left-source', targetHandle: 'right-target' };
     }
   } else if (absDy > absDx * 1.5) {
     // Primarily vertical
     if (dy > 0) {
-      return { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+      return { sourcePosition: Position.Bottom, targetPosition: Position.Top, sourceHandle: 'bottom-source', targetHandle: 'top-target' };
     } else {
-      return { sourcePosition: Position.Top, targetPosition: Position.Bottom };
+      return { sourcePosition: Position.Top, targetPosition: Position.Bottom, sourceHandle: 'top-source', targetHandle: 'bottom-target' };
     }
   } else {
     // Diagonal - use the dominant direction
     if (dx > 0 && dy > 0) {
       // Target is bottom-right
-      return { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+      return { sourcePosition: Position.Bottom, targetPosition: Position.Top, sourceHandle: 'bottom-source', targetHandle: 'top-target' };
     } else if (dx > 0 && dy < 0) {
       // Target is top-right
-      return { sourcePosition: Position.Top, targetPosition: Position.Bottom };
+      return { sourcePosition: Position.Top, targetPosition: Position.Bottom, sourceHandle: 'top-source', targetHandle: 'bottom-target' };
     } else if (dx < 0 && dy > 0) {
       // Target is bottom-left
-      return { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+      return { sourcePosition: Position.Bottom, targetPosition: Position.Top, sourceHandle: 'bottom-source', targetHandle: 'top-target' };
     } else {
       // Target is top-left
-      return { sourcePosition: Position.Top, targetPosition: Position.Bottom };
+      return { sourcePosition: Position.Top, targetPosition: Position.Bottom, sourceHandle: 'top-source', targetHandle: 'bottom-target' };
     }
   }
 }
@@ -114,7 +114,7 @@ function TopologyCanvasInner() {
 
       const positions = sourceHost && targetHost
         ? getEdgePositions(sourceHost, targetHost)
-        : { sourcePosition: Position.Bottom, targetPosition: Position.Top };
+        : { sourcePosition: Position.Bottom, targetPosition: Position.Top, sourceHandle: 'bottom-source', targetHandle: 'top-target' };
 
       return {
         id: connection.id,
@@ -124,6 +124,8 @@ function TopologyCanvasInner() {
         label: connection.label,
         sourcePosition: positions.sourcePosition,
         targetPosition: positions.targetPosition,
+        sourceHandle: positions.sourceHandle,
+        targetHandle: positions.targetHandle,
       };
     });
   }, [data]);

@@ -1,0 +1,18 @@
+{
+  "app": {
+    "name": "Constellation",
+    "version": "1.0.0"
+  },
+  "server": {
+    "port": 3000,
+    "host": "0.0.0.0"
+  },
+  "data": {
+    "path": "./data/infrastructure.json"
+  },
+  "ui": {
+    "defaultDarkMode": true,
+    "showIPs": true,
+    "showPorts": true
+  }
+}
