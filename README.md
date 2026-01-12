@@ -2,6 +2,8 @@
 
 A visual infrastructure topology dashboard for homelab and cloud environments.
 
+![Constellation Dashboard](docs/screenshot.png)
+
 ## Features
 
 - **Visual Network Topology** - Interactive drag-and-drop canvas powered by React Flow
