@@ -1,6 +1,6 @@
 services:
   constellation:
-    image: ${DOCKER_REGISTRY:-ghcr.io}/Enan456/constellation:${VERSION:-latest}
+    image: ${DOCKER_REGISTRY:-ghcr.io}/enan456/constellation:${VERSION:-latest}
     build:
       context: .
       labels:
